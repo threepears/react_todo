@@ -7,13 +7,11 @@ import Notes from './notes';
 const todos = [
   {
     task: 'Sample Task 1',
-    isCompleted: false
-
+    completed: false
   },
   {
     task: 'Sample Task 2',
-    isCompleted: true
-
+    completed: true
   }
 ];
 
@@ -31,7 +29,7 @@ export default class App extends React.Component {
   addTask(task) {
     this.state.todos.push({
       task,
-      isCompleted: false
+      completed: false
     })
 
     this.setState({ todos: this.state.todos });
@@ -43,6 +41,20 @@ export default class App extends React.Component {
     this.setState({ todos: this.state.todos });
   }
 
+  saveTask(oldTask, newTask) {
+    let taskList = this.state.todos;
+    let newList = taskList.map( n => {
+      console.log("SAVING", oldTask);
+      console.log("SAVING", newTask);
+      if (n.task === oldTask) {
+        console.log("MATCH");
+        n.task = newTask;
+      }
+    });
+
+    this.setState({ todos: this.state.todos });
+  }
+
   render() {
     return (
       <div className='content'>
@@ -51,7 +63,11 @@ export default class App extends React.Component {
           <EntryForm addTask={this.addTask.bind(this)} />
         </div>
         <div className='content-right'>
-          <Notes todos={this.state.todos} deleteTask={this.deleteTask.bind(this)} />
+          <Notes
+            todos={this.state.todos}
+            deleteTask={this.deleteTask.bind(this)}
+            saveTask={this.saveTask.bind(this)}
+          />
         </div>
       </div>
     )

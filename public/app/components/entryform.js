@@ -15,15 +15,8 @@ export default class EntryForm extends React.Component {
     e.preventDefault();
 
     let newTask = this.refs.inputInfo.value;
-
-    console.log(newTask);
-    console.log(this);
-    console.log(this.props);
-
     this.props.addTask(newTask);
-
     this.refs.inputInfo.value = '';
-
   }
 
 }

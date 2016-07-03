@@ -65,6 +65,7 @@ body {
 }
 
 .content-right li h3 {
+  font-size: 1.2em;
   margin: 0 0 10px;
 }
 
@@ -72,6 +73,12 @@ body {
   margin-right: 10px;
 }
 
+.edit-box {
+  margin-bottom: 10px;
+}
 
+.edit-box input {
+  font-size: 1.2em;
+}
 
 
