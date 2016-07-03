@@ -28,6 +28,21 @@ export default class App extends React.Component {
     };
   }
 
+  addTask(task) {
+    this.state.todos.push({
+      task,
+      isCompleted: false
+    })
+
+    this.setState({ todos: this.state.todos });
+  }
+
+  deleteTask(task) {
+    let taskList = this.state.todos;
+    this.state.todos = taskList.filter( n => n.task !== task);
+    this.setState({ todos: this.state.todos });
+  }
+
   render() {
     return (
       <div className='content'>
@@ -36,23 +51,12 @@ export default class App extends React.Component {
           <EntryForm addTask={this.addTask.bind(this)} />
         </div>
         <div className='content-right'>
-          <Notes todos={this.state.todos} />
+          <Notes todos={this.state.todos} deleteTask={this.deleteTask.bind(this)} />
         </div>
       </div>
     )
   }
 
-  addTask(task) {
-    console.log(task);
-    console.log(this);
-
-    this.state.todos.push({
-      task,
-      isCompleted: false
-    })
-
-    this.setState({ todos: this.state.todos });
-  }
 
 }
 
