@@ -35,6 +35,17 @@ export default class App extends React.Component {
     this.setState({ todos: this.state.todos });
   }
 
+  completeToggle(currentTask) {
+    let taskList = this.state.todos;
+    let newList = taskList.map( n => {
+      if (n.task === currentTask) {
+        n.completed = !n.completed;
+      }
+    });
+
+    this.setState({ todos: this.state.todos });
+  }
+
   deleteTask(task) {
     let taskList = this.state.todos;
     this.state.todos = taskList.filter( n => n.task !== task);
@@ -44,10 +55,7 @@ export default class App extends React.Component {
   saveTask(oldTask, newTask) {
     let taskList = this.state.todos;
     let newList = taskList.map( n => {
-      console.log("SAVING", oldTask);
-      console.log("SAVING", newTask);
       if (n.task === oldTask) {
-        console.log("MATCH");
         n.task = newTask;
       }
     });
@@ -60,19 +68,19 @@ export default class App extends React.Component {
       <div className='content'>
         <div className='content-left'>
           <ToDoHeader />
-          <EntryForm addTask={this.addTask.bind(this)} />
+          <EntryForm addTask={this.addTask.bind(this)} todos={this.state.todos} />
         </div>
         <div className='content-right'>
           <Notes
             todos={this.state.todos}
             deleteTask={this.deleteTask.bind(this)}
             saveTask={this.saveTask.bind(this)}
+            completeToggle={this.completeToggle.bind(this)}
           />
         </div>
       </div>
     )
   }
-
 
 }
 

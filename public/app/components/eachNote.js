@@ -10,6 +10,11 @@ export default class eachNote extends React.Component {
     };
   }
 
+  completed() {
+    let currentTask = this.props.task;
+    this.props.completeToggle(currentTask);
+  }
+
   editTask() {
     this.setState({ edit: true });
     console.log(this);
@@ -24,7 +29,6 @@ export default class eachNote extends React.Component {
     let newValue = this.refs.editInfo.value;
     this.props.saveTask(oldValue, newValue);
     this.setState({ edit: false });
-
   }
 
   taskListing() {
@@ -42,18 +46,22 @@ export default class eachNote extends React.Component {
   }
 
   buttonListing() {
+    let completedState = this.props.complete ? "completeButtons" : "incompleteButtons";
+
     if (this.state.edit) {
       return (
-        <div>
+        <div className={completedState}>
           <button onClick={this.saveEditedTask.bind(this)}>Save</button>
           <button onClick={this.cancelEdit.bind(this)}>Cancel</button>
+          <button onClick={this.completed.bind(this)}>Completed</button>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className={completedState}>
           <button onClick={this.editTask.bind(this)}>Edit</button>
           <button onClick={this.props.deleteTask.bind(this, this.props.task)}>Delete</button>
+          <button onClick={this.completed.bind(this)}>Completed</button>
         </div>
       );
     }
@@ -61,8 +69,11 @@ export default class eachNote extends React.Component {
 
   render() {
     console.log(this);
+    let completedState = this.props.complete ? "complete" : "";
+    let checkedState = this.props.complete ? "checked" : "unchecked";
     return(
-        <li>
+        <li className={completedState}>
+          <div className={checkedState}>✓</div>
           {this.taskListing()}
           {this.buttonListing()}
         </li>
