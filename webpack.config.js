@@ -1,15 +1,17 @@
 var webpack = require('webpack');
 var path = require('path');
 
+// client?http://127.0.0.1:8080/
+
 module.exports = {
     devtool: 'inline-source-map',
     entry:  [
-            'webpack-dev-server/client?http://127.0.0.1:8080/',
+            'webpack-dev-server/client?http://localhost:3000',
             'webpack/hot/only-dev-server',
             './public/app'
     ],
     output: {
-        path: path.join(__dirname, 'public'),
+        path: './public',
         filename: 'bundle.js'
     },
     resolve: {
@@ -21,6 +23,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
+                include: path.join(__dirname, 'public'),
                 loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015'],
             }
         ]
