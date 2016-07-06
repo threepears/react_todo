@@ -3,7 +3,7 @@ const app = express();
 
 const path = require('path');
 
-const PORT = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const mysql = require('mysql');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -12,10 +12,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Establish database connection
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'my3PearSqL!',
+  user: 'adminS9tPYBT',
+  password: 'rvkgsncCA_3d',
   socketPath: '/tmp/mysql.sock',
-  database: 'tasks'
+  database: 'reacttodos'
 });
 
 
