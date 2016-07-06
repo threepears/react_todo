@@ -12,10 +12,14 @@ const JAWSDB_PASS = process.env.JAWSDB_PASS || '';
 const JAWSDB_PORT = process.env.JAWSDB_PORT;
 const JAWSDB_URL = process.env.JAWSDB_URL;
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(_, res) { res.sendFile(path.join(__dirname, './public')) });
+// app.get('/', function(_, res) { res.sendFile(path.join(__dirname, './public')) });
 
+
+app.get('/', function(req, res) {
+  console.log("HELLOOOOOOO!!!!!!!");
+})
 
 // Establish database connection
 const connection = mysql.createConnection({
