@@ -17,6 +17,7 @@ export default class App extends React.Component {
     this.fetchTasks();
   }
 
+  // Get initial tasks from database
   fetchTasks() {
     fetch('/tasks', {method: 'GET'})
       .then((response) => response.json())
@@ -29,6 +30,7 @@ export default class App extends React.Component {
       }).bind(this);
   }
 
+  // Add task to database
   addTask(task) {
     fetch('/tasks/' + task, {method: 'POST'})
       .then((response) => response.json())
@@ -39,22 +41,22 @@ export default class App extends React.Component {
       .catch((err) => {
         throw new Error(err);
       });
-
-    this.setState({ todos: this.state.todos });
   }
 
-  completeToggle(currentTask) {
-    console.log(this);
-    let taskList = this.state.todos;
-    let newList = taskList.map( n => {
-      if (n.task === currentTask) {
-        n.completed = !n.completed;
-      }
-    });
-
-    this.setState({ todos: this.state.todos });
+  // Toggle task's completed status and save to database
+  completeToggle(currentTask, currentState) {
+    fetch('/tasks/complete/' + currentTask + '/' + currentState, {method: 'PUT'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("UPDATE COMPLETION", responseData);
+        this.fetchTasks();
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
   }
 
+  // Delete task from database
   deleteTask(task) {
     fetch('/tasks/' + task, {method: 'DELETE'})
       .then((response) => response.json())
@@ -67,15 +69,17 @@ export default class App extends React.Component {
       });
   }
 
+  // Save an edited task name to database
   saveTask(oldTask, newTask) {
-    let taskList = this.state.todos;
-    let newList = taskList.map( n => {
-      if (n.task === oldTask) {
-        n.task = newTask;
-      }
-    });
-
-    this.setState({ todos: this.state.todos });
+    fetch('/tasks/edit/' + oldTask + '/' + newTask, {method: 'PUT'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("UPDATE COMPLETION", responseData);
+        this.fetchTasks();
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
   }
 
   render() {

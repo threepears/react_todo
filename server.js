@@ -2,16 +2,14 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
-const bodyparser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 const mysql = require('mysql');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended:false }));
 
+// Establish database connection
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -21,6 +19,7 @@ const connection = mysql.createConnection({
 });
 
 
+// Get list of tasks from database
 app.get('/tasks', function(req, res) {
 
   connection.query('SELECT * FROM `tasklist`', function (error, results, fields) {
@@ -34,6 +33,7 @@ app.get('/tasks', function(req, res) {
 });
 
 
+// Post new task to database
 app.post('/tasks/:task', function(req, res) {
 
   const newTask = req.params.task;
@@ -50,6 +50,44 @@ app.post('/tasks/:task', function(req, res) {
 });
 
 
+// Change completed status of task in database
+app.put('/tasks/complete/:task/:state', function(req, res) {
+
+  const newTask = req.params.task;
+  const newState = req.params.state;
+  const revisedState = (newState === "true") ? "false" : "true";
+  const sql = 'UPDATE `tasklist` SET iscompleted=' + connection.escape(revisedState) + ' WHERE taskname=' + connection.escape(newTask);
+
+  connection.query(sql, function (error, results, fields) {
+    if (error) {
+      console.error('Error: ' + error.stack);
+      return;
+    }
+    console.log(results);
+    res.send(results);
+  });
+});
+
+
+// Replace old task name with newly edited name
+app.put('/tasks/edit/:oldtask/:newtask', function(req, res) {
+
+  const oldTask = req.params.oldtask;
+  const newTask = req.params.newtask;
+  const sql = 'UPDATE `tasklist` SET taskname=' + connection.escape(newTask) + ' WHERE taskname=' + connection.escape(oldTask);
+
+  connection.query(sql, function (error, results, fields) {
+    if (error) {
+      console.error('Error: ' + error.stack);
+      return;
+    }
+    console.log(results);
+    res.send(results);
+  });
+});
+
+
+// Delete task from database
 app.delete('/tasks/:task', function(req, res) {
 
   const newTask = req.params.task;

@@ -137,4 +137,19 @@ body {
   font-size: 1.2em;
 }
 
+/*****************************
+MEDIA QUERIES
+*****************************/
 
+@media (max-width: 640px) {
+  .content-left {
+    display: block;
+    margin: 0 0 20px;
+    width: auto;
+  }
+
+  .content-right {
+    float: none;
+    width: auto;
+  }
+}

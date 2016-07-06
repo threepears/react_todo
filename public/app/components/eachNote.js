@@ -10,9 +10,11 @@ export default class eachNote extends React.Component {
     };
   }
 
+  // If completed button clicked, sends current task name and completed status to toggle function on main app.js file
   completed() {
     let currentTask = this.props.task;
-    this.props.completeToggle(currentTask);
+    let currentState = this.props.complete;
+    this.props.completeToggle(currentTask, currentState);
   }
 
   editTask() {
@@ -24,6 +26,7 @@ export default class eachNote extends React.Component {
     this.setState({ edit: false });
   }
 
+  // Sends edited task name and old task name to function on main app.js document to be saved to database
   saveEditedTask() {
     let oldValue = this.props.task;
     let newValue = this.refs.editInfo.value;
@@ -31,6 +34,7 @@ export default class eachNote extends React.Component {
     this.setState({ edit: false });
   }
 
+  // If in editing mode, renders input box for typing new task name; if not, just renders old task name
   taskListing() {
     if (this.state.edit) {
       return (
@@ -45,6 +49,7 @@ export default class eachNote extends React.Component {
     }
   }
 
+  // Creates set of buttons to render to DOM depending on whether edit option has been selected; determines if task is completed and adds class for styling to div
   buttonListing() {
     let completedState = (this.props.complete === "true") ? "completeButtons" : "incompleteButtons";
 

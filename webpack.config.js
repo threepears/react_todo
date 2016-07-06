@@ -1,12 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
 
-// client?http://127.0.0.1:8080/
-
 module.exports = {
     devtool: 'inline-source-map',
     entry:  [
-            'webpack-dev-server/client?http://localhost:3000',
+            'webpack-dev-server/client?http://127.0.0.1:3000/',
             'webpack/hot/only-dev-server',
             './public/app'
     ],

@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/threepears/react_todo#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "react": "^15.2.0",
     "react-dom": "^15.2.0"

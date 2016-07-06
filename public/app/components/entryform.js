@@ -10,6 +10,7 @@ export default class EntryForm extends React.Component {
     };
   }
 
+  // Submit tasks to add to list; checks for empty or duplicate tasks
   submitTask(e) {
     e.preventDefault();
     let newTask = this.refs.inputInfo.value;
