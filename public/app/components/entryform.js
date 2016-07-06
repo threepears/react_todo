@@ -12,12 +12,16 @@ export default class EntryForm extends React.Component {
 
   submitTask(e) {
     e.preventDefault();
-
     let newTask = this.refs.inputInfo.value;
 
     let taskCheck = newTask.toLowerCase();
     let tasks = this.props.todos;
-    let taskSearch = tasks.filter( n => n.task.toLowerCase() === taskCheck );
+    console.log(tasks);
+    let taskSearch = tasks.filter( n => n.taskname.toLowerCase() === taskCheck );
+
+    console.log(this);
+    console.log(taskCheck);
+    console.log(taskSearch.length);
 
     if (newTask === '') {
       this.refs.inputInfo.value = '';

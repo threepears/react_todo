@@ -46,7 +46,7 @@ export default class eachNote extends React.Component {
   }
 
   buttonListing() {
-    let completedState = this.props.complete ? "completeButtons" : "incompleteButtons";
+    let completedState = (this.props.complete === "true") ? "completeButtons" : "incompleteButtons";
 
     if (this.state.edit) {
       return (
@@ -69,8 +69,8 @@ export default class eachNote extends React.Component {
 
   render() {
     console.log(this);
-    let completedState = this.props.complete ? "complete" : "";
-    let checkedState = this.props.complete ? "checked" : "unchecked";
+    let completedState = (this.props.complete === "true") ? "complete" : "";
+    let checkedState = (this.props.complete === "true") ? "checked" : "unchecked";
     return(
         <li className={completedState}>
           <div className={checkedState}>✓</div>

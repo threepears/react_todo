@@ -4,38 +4,47 @@ import EntryForm from './entryform';
 import Notes from './notes';
 
 
-const todos = [
-  {
-    task: 'Sample Task 1',
-    completed: false
-  },
-  {
-    task: 'Sample Task 2',
-    completed: true
-  }
-];
-
-
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      todos
-    };
+    this.state = {todos: []};
+  }
+
+  componentDidMount() {
+    console.log("MOUNTING");
+    this.fetchTasks();
+  }
+
+  fetchTasks() {
+    fetch('/tasks', {method: 'GET'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("FETCHING", responseData);
+        this.setState({todos: responseData});
+      })
+      .catch((err) => {
+        throw new Error(err);
+      }).bind(this);
   }
 
   addTask(task) {
-    this.state.todos.push({
-      task,
-      completed: false
-    })
+    fetch('/tasks/' + task, {method: 'POST'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("ADDING", responseData);
+        this.fetchTasks();
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
 
     this.setState({ todos: this.state.todos });
   }
 
   completeToggle(currentTask) {
+    console.log(this);
     let taskList = this.state.todos;
     let newList = taskList.map( n => {
       if (n.task === currentTask) {
@@ -47,9 +56,15 @@ export default class App extends React.Component {
   }
 
   deleteTask(task) {
-    let taskList = this.state.todos;
-    this.state.todos = taskList.filter( n => n.task !== task);
-    this.setState({ todos: this.state.todos });
+    fetch('/tasks/' + task, {method: 'DELETE'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("DELETING", responseData);
+        this.fetchTasks();
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
   }
 
   saveTask(oldTask, newTask) {
@@ -64,6 +79,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log(this);
     return (
       <div className='content'>
         <div className='content-left'>
@@ -72,6 +88,7 @@ export default class App extends React.Component {
         </div>
         <div className='content-right'>
           <Notes
+            url="/tasks"
             todos={this.state.todos}
             deleteTask={this.deleteTask.bind(this)}
             saveTask={this.saveTask.bind(this)}
@@ -83,6 +100,3 @@ export default class App extends React.Component {
   }
 
 }
-
-
-
