@@ -19,6 +19,7 @@ const JAWSDB_URL = process.env.JAWSDB_URL;
 
 app.get('/', function(req, res) {
   console.log("HELLOOOOOOO!!!!!!!");
+  res.send("HELLLOOOOOOO!");
 })
 
 // Establish database connection
