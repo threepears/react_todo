@@ -6,6 +6,12 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const mysql = require('mysql');
 
+const JAWSDB_HOST = process.env.JAWSDB_HOST || 3000;
+const JAWSDB_USER = process.env.JAWSDB_USER || '';
+const JAWSDB_PASS = process.env.JAWSDB_PASS || '';
+const JAWSDB_PORT = process.env.JAWSDB_PORT;
+const JAWSDB_URL = process.env.JAWSDB_URL;
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(_, res) { res.sendFile(path.join(__dirname, './public')) });
@@ -13,10 +19,10 @@ app.get('/', function(_, res) { res.sendFile(path.join(__dirname, './public')) }
 
 // Establish database connection
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'my3PearSqL!',
-  socketPath: '/tmp/mysql.sock',
+  host: JAWSDB_HOST,
+  user: JAWSDB_USER,
+  password: JAWSDB_PASS,
+  // socketPath: '/tmp/mysql.sock',
   database: 'tasks'
 });
 
