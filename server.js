@@ -3,7 +3,7 @@ const app = express();
 
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 const mysql = require('mysql');
 
 app.use(express.static(path.join(__dirname, 'public')));
