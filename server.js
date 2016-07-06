@@ -8,6 +8,8 @@ const mysql = require('mysql');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', function(_, res) { res.sendFile(path.join(__dirname, './public')) });
+
 
 // Establish database connection
 const connection = mysql.createConnection({
