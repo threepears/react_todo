@@ -9,10 +9,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', function(req, res) {
-//   console.log("HELLOOOOOOO!!!!!!!");
-//   res.send("HELLLOOOOOOO!");
-// })
 
 
 app.listen(PORT, () => {
