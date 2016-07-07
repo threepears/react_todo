@@ -27,7 +27,7 @@ export default class App extends React.Component {
       })
       .catch((err) => {
         throw new Error(err);
-      }).bind(this);
+      });
   }
 
   // Add task to database
