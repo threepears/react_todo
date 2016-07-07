@@ -19,6 +19,7 @@
   "homepage": "https://github.com/threepears/react_todo#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "mysql": "^2.11.1",
     "react": "^15.2.0",
     "react-dom": "^15.2.0"
   },
