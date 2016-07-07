@@ -1,0 +1,155 @@
+body {
+  font-family: Helvetica, sans-serif;
+  padding: 2%;
+  margin: 0;
+}
+
+.content-left {
+  border: 3px solid #2aa9b0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px #0d888f;
+  color: #2aa9b0;
+  display: inline-block;
+  margin-right: 2%;
+  padding: 20px 30px;
+  text-align: center;
+  width: 35%;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+  margin-bottom: 20px;
+  min-height: 18px;
+}
+
+.content-left form input {
+  background-color: #eefcfd;
+  border: 2px solid #2aa9b0;
+  border-radius: 5px;
+  display: block;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  padding: 2% 4%;
+  width: 90%;
+}
+
+.content-left form button {
+  background-color: #ed5457;
+  border: 2px solid #c52528;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 7px 10px;
+  transition: 1s all;
+}
+
+.content-left form button:hover,
+.content-left form button:active {
+  background-color: #c52528;
+  cursor: pointer;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header h2 {
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.content-right {
+  float: right;
+  width: 52%;
+}
+
+.content-right ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+.checked {
+  color: #1b8d71;
+  float: right;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.unchecked {
+  display: none;
+}
+
+.content-right li {
+  background-color: #f9da8d;
+  border: 3px solid #daa520;
+  border-radius: 10px;
+  list-style-type: none;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.content-right li h3 {
+  font-size: 1.2em;
+  margin: 0 0 15px;
+}
+
+.incompleteButtons button {
+  background-color: #daa520;
+  border: 2px solid #bf9019;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  margin-right: 10px;
+  transition: 1s all;
+}
+
+.incompleteButtons button:hover,
+.incompleteButtons button:active {
+  background-color: #bf9019;
+}
+
+.content-right li.complete {
+  background-color: #69c571;
+  border-color: #13715a;
+}
+
+.completeButtons button {
+  background-color: #1b8d71;
+  border: 2px solid #13715a;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  margin-right: 10px;
+  transition: 1s all;
+}
+
+.completeButtons button:hover,
+.completeButtons button:active {
+  background-color: #13715a;
+}
+
+.edit-box {
+  margin-bottom: 10px;
+}
+
+.edit-box input {
+  font-size: 1.2em;
+}
+
+/*****************************
+MEDIA QUERIES
+*****************************/
+
+@media (max-width: 640px) {
+  .content-left {
+    display: block;
+    margin: 0 0 20px;
+    width: auto;
+  }
+
+  .content-right {
+    float: none;
+    width: auto;
+  }
+}
