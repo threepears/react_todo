@@ -37,6 +37,3 @@ connection.connect(function(err) {
 app.listen(PORT, () => {
   console.log(`Node.js server started. Listening on port ${PORT}`);
 });
-
-
-mysql -h nj5rh9gto1v5n05t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u tp4kkvyi5zttxvwm -pskf9vi28nm5p91po 3306/emspx5n4ycnze24b < backup.sql
