@@ -22291,7 +22291,7 @@
         return _react2.default.createElement(
           'div',
           { className: 'header' },
-          _react2.default.createElement('img', { src: 'http://www.psdgraphics.com/file/notepad-pencil-icon.jpg', alt: 'Pencil and Pad' }),
+          _react2.default.createElement('img', { src: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/notepad-icon.png', alt: 'Pencil and Pad' }),
           _react2.default.createElement(
             'h2',
             null,
