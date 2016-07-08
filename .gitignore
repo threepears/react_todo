@@ -39,6 +39,6 @@ jspm_packages
 # React bundle.js file
 public/bundle.js
 
-# hot-update.js files
+# hot-update.js and .json files
 *.hot-update.js
 *.hot-update.json
