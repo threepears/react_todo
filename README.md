@@ -8,4 +8,8 @@ On mobile devices, the task list responsively shifts from the right to under the
 
 ### Tools Used
 
-Node, Express, Angular, PostgreSQL, Knex, Bootstrap, JQuery, Sass, Code editor
+Node, Express, React, Webpack, MySQL, Code editor
+
+### Deployed Application
+
+[https://react-to-do-list.herokuapp.com/](https://react-to-do-list.herokuapp.com/)
