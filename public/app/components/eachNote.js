@@ -73,7 +73,6 @@ export default class eachNote extends React.Component {
   }
 
   render() {
-    console.log(this);
     let completedState = (this.props.complete === "true") ? "complete" : "";
     let checkedState = (this.props.complete === "true") ? "checked" : "unchecked";
     return(
