@@ -35,8 +35,8 @@ body {
 }
 
 .content-left form button {
-  background-color: #ed5457;
-  border: 2px solid #c52528;
+  background-color: #e67e22;
+  border: 2px solid #d35400;
   border-radius: 5px;
   color: #fff;
   font-size: 1.2em;
@@ -46,11 +46,12 @@ body {
 
 .content-left form button:hover,
 .content-left form button:active {
-  background-color: #c52528;
+  background-color: #d35400;
   cursor: pointer;
 }
 
 .header img {
+  margin: 10px 0 20px;
   width: 200px;
 }
 
