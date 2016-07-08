@@ -153,3 +153,9 @@ MEDIA QUERIES
     width: auto;
   }
 }
+
+@media (max-width: 350px) {
+  .completeButtons button {
+    font-size: 0.8em;
+  }
+}
