@@ -49,6 +49,7 @@ export default class eachNote extends React.Component {
     }
   }
 
+
   // Creates set of buttons to render to DOM depending on whether edit option has been selected; determines if task is completed and adds class for styling to div
   buttonListing() {
     let completedState = (this.props.complete === "true") ? "completeButtons" : "incompleteButtons";
@@ -71,6 +72,7 @@ export default class eachNote extends React.Component {
       );
     }
   }
+
 
   render() {
     let completedState = (this.props.complete === "true") ? "complete" : "";

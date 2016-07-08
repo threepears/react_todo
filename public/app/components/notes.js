@@ -10,6 +10,7 @@ export default class Notes extends React.Component {
     return list;
   }
 
+
   render() {
     return(
         <div>
@@ -19,5 +20,4 @@ export default class Notes extends React.Component {
         </div>
       )
   }
-
 }

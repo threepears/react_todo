@@ -13,16 +13,12 @@ export default class EntryForm extends React.Component {
   // Submit tasks to add to list; checks for empty or duplicate tasks
   submitTask(e) {
     e.preventDefault();
-    let newTask = this.refs.inputInfo.value;
 
+    let newTask = this.refs.inputInfo.value;
     let taskCheck = newTask.toLowerCase();
     let tasks = this.props.todos;
-    console.log(tasks);
     let taskSearch = tasks.filter( n => n.taskname.toLowerCase() === taskCheck );
 
-    console.log(this);
-    console.log(taskCheck);
-    console.log(taskSearch.length);
 
     if (newTask === '') {
       this.refs.inputInfo.value = '';
@@ -41,6 +37,7 @@ export default class EntryForm extends React.Component {
     }
   }
 
+
   render() {
     return(
       <div>
@@ -52,5 +49,4 @@ export default class EntryForm extends React.Component {
       </div>
       )
   }
-
 }
