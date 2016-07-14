@@ -30,6 +30,10 @@ export default class EntryForm extends React.Component {
       this.state.error = "This task already exists!";
       this.setState({ error: this.state.error });
       return;
+    } else if (this.props.error) {
+      this.refs.inputInfo.value = '';
+      this.setState({ error: this.props.error });
+      return;
     } else {
       this.state.error = null;
       this.props.addTask(newTask);
@@ -39,9 +43,10 @@ export default class EntryForm extends React.Component {
 
 
   render() {
+    console.log(this);
     return(
       <div>
-        <div className="error">{this.state.error}</div>
+        <div className="error">{this.state.error || this.props.error}</div>
         <form onSubmit={this.submitTask.bind(this)}>
           <input type='text' placeholder='Enter task here' ref="inputInfo" />
           <button>Create</button>

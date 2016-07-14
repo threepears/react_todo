@@ -10,7 +10,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const connection = mysql.createConnection('mysql://tp4kkvyi5zttxvwm:skf9vi28nm5p91po@nj5rh9gto1v5n05t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/emspx5n4ycnze24b');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'my3PearSqL!',
+  socketPath: '/tmp/mysql.sock',
+  database: 'tasks'
+});
 
 
 // Get list of tasks from database
@@ -18,7 +24,7 @@ app.get('/tasks', function(req, res) {
 
   connection.query('SELECT * FROM `tasklist`', function (error, results, fields) {
     if (error) {
-      console.error('Error: ' + err.stack);
+      console.error('Error: ' + error.stack);
       return;
     }
     res.send(results);

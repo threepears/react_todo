@@ -9,7 +9,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {todos: []};
+    this.state = {todos: [], error: ""};
   }
 
   componentDidMount() {
@@ -19,21 +19,24 @@ export default class App extends React.Component {
 
   // Get initial tasks from database
   fetchTasks() {
-    fetch('/tasks', {method: 'GET'})
+    fetch('/taskz', {method: 'GET'})
       .then((response) => response.json())
       .then((responseData) => {
         console.log("FETCHING", responseData);
         this.setState({todos: responseData});
       })
       .catch((err) => {
-        throw new Error(err);
+        this.setState({error: "Couldn't access database. Try again later!"});
+        console.log(this.state.error);
+        // throw new Error(err);
       });
   }
 
   // Add task to database
   addTask(task) {
+    const { todos } = this.state;
+    this.setState({todos: todos.concat({iscompleted: "false", taskname: task})});
     fetch('/tasks/' + task, {method: 'POST'})
-      .then((response) => response.json())
       .then((responseData) => {
         console.log("ADDING", responseData);
         this.fetchTasks();
@@ -46,7 +49,6 @@ export default class App extends React.Component {
   // Toggle task's completed status and save to database
   completeToggle(currentTask, currentState) {
     fetch('/tasks/complete/' + currentTask + '/' + currentState, {method: 'PUT'})
-      .then((response) => response.json())
       .then((responseData) => {
         console.log("UPDATE COMPLETION", responseData);
         this.fetchTasks();
@@ -59,7 +61,6 @@ export default class App extends React.Component {
   // Delete task from database
   deleteTask(task) {
     fetch('/tasks/' + task, {method: 'DELETE'})
-      .then((response) => response.json())
       .then((responseData) => {
         console.log("DELETING", responseData);
         this.fetchTasks();
@@ -72,7 +73,6 @@ export default class App extends React.Component {
   // Save an edited task name to database
   saveTask(oldTask, newTask) {
     fetch('/tasks/edit/' + oldTask + '/' + newTask, {method: 'PUT'})
-      .then((response) => response.json())
       .then((responseData) => {
         console.log("UPDATE COMPLETION", responseData);
         this.fetchTasks();
@@ -88,7 +88,7 @@ export default class App extends React.Component {
       <div className='content'>
         <div className='content-left'>
           <ToDoHeader />
-          <EntryForm addTask={this.addTask.bind(this)} todos={this.state.todos} />
+          <EntryForm addTask={this.addTask.bind(this)} error = {this.state.error} todos={this.state.todos} />
         </div>
         <div className='content-right'>
           <Notes
