@@ -19,7 +19,7 @@ export default class App extends React.Component {
 
   // Get initial tasks from database
   fetchTasks() {
-    fetch('/taskz', {method: 'GET'})
+    fetch('/tasks', {method: 'GET'})
       .then((response) => response.json())
       .then((responseData) => {
         console.log("FETCHING", responseData);
@@ -27,7 +27,6 @@ export default class App extends React.Component {
       })
       .catch((err) => {
         this.setState({error: "Couldn't access database. Try again later!"});
-        console.log(this.state.error);
         // throw new Error(err);
       });
   }
