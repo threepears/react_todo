@@ -42,3 +42,6 @@ public/bundle.js
 # hot-update.js and .json files
 *.hot-update.js
 *.hot-update.json
+
+# Extra project files
+extra_files/
